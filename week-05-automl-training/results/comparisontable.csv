@@ -1,0 +1,6 @@
+﻿input_text,generic_label,generic_score,finetuned_a_label,finetuned_a_score,finetuned_b_label,finetuned_b_score,winner,notes,tested_at
+Unauthorized access attempt detected at Northfield HQ server room 3B at 2:17 AM.,NEGATIVE,0.7,negative,0.7,fear,0.7,Fine-Tuned B,,5/18/2026 1:08pm
+Fire suppression alarm triggered on level 14 with no scheduled maintenance activity.,NEGATIVE,0.7,neutral,0.7,fear,0.4,Fine-Tuned B,,5/18/2026 1:08pm
+Visitor badge failed deactivation and was used after employee termination.,NEGATIVE,0.7,negative,0.2,neutral,0.6,Fine-Tuned B,,5/18/2026 1:08pm
+Monthly fire suppression inspection completed successfully across all zones.,POSITIVE,0.6,positive,0.6,neutral,0.5,Fine-Tuned B,,5/18/2026 1:08pm
+Routine badge access logs reviewed with no anomalies detected.,NEUTRAL,0.7,neutral,0.7,neutral,0.7,Tie,,5/18/2026 1:08pm
