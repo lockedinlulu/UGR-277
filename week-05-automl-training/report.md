@@ -57,43 +57,29 @@ More diverse emergency training images would likely improve performance.
 2. Fine-Tuned A: cardiffnlp/twitter-roberta-base-sentiment-latest
 3. Fine-Tuned B: j-hartmann/emotion-english-distilroberta-base
 
----
-
 ### Analysis
 
 **Generic model strengths:**  
-Strong basic positive/negative sentiment detection.
+Reliable basic sentiment classification.
 
 **Generic model weaknesses:**  
-Limited ability to identify operational urgency.
+Unable to distinguish operational urgency from ordinary negative language.
 
 **Fine-tuned model advantage:**  
-Better contextual understanding of emergency-related language.
+The emotion-based classifier detected fear and concern signals strongly associated with emergency scenarios.
 
 **Biggest surprise:**  
-Emotion-based classification was highly effective for security incident analysis.
+The emotion classifier consistently identified emergency events with high confidence while maintaining neutral classifications for routine operational updates.
 
----
-
-## Recommended Model for My Capstone Component
-
-**Component:** Emergency Detection
+### Recommended Model for My Capstone Component
 
 **Primary Model:** j-hartmann/emotion-english-distilroberta-base
+
+**Why:**  
+Its outputs align more closely with emergency escalation logic than sentiment-based models.
 
 **Confidence Threshold:** 0.85
 
 **Priority Metric:** Recall
 
-Recall is most important because missing emergencies creates higher operational risk than generating false alerts.
-
----
-
-## Limitations & Next Steps
-
-Future improvements would include:
-
-- Larger training dataset
-- More ambiguous edge-case examples
-- Additional domain-specific fine-tuning
-- Testing on live security dashboard feeds
+Missing emergencies presents greater operational risk than false alerts.
