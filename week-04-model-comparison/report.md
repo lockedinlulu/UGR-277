@@ -30,7 +30,7 @@
 |--------|-----------|-----------------|-----------------|--------------|---------------------|
 | 1 — Unauthorized login from IP (Moscow, John Miller, 3:47 AM) | NEGATIVE (0.9961) | possible anomaly | 0.9961 | Person, Location entities | CRITICAL |
 | 2 — Routine firewall rule update (fw-01, maintenance window) | NEGATIVE (0.9986) | routine activity | 0.9986 | Organization entities | LOW |
-| 3 — Phishing email targeting finance@acmecorp.com | NEGATIVE (0.9959) | possible anomaly | 0.9959 | Organization entities | CRITICAL |
+| 3 — Phishing email targeting finance @ acmecorp.com | NEGATIVE (0.9959) | possible anomaly | 0.9959 | Organization entities | CRITICAL |
 | 4 — Multiple failed SSH attempts from Beijing IP (47 in 5 min) | NEGATIVE (0.9994) | possible anomaly | 0.9994 | Location entities | CRITICAL |
 | 5 — System resource utilization normal, no anomalies | NEGATIVE (0.9880) | routine activity | 0.9880 | No entities | LOW / INFORMATIONAL |
 
