@@ -1,23 +1,40 @@
 # Week 5 Report: AutoML Training & Fine-Tuned Model Evaluation
 
-**Name:** Hala Elhanafy
-**Capstone Project:** Security Event Classification  
-**My Component:** Emergency Detection
+**Name:** Hala Elhanafy 
+**Date:** May 2026  
+**Capstone Project:** Emergency Security Monitoring System  
+**My Component:** Image classification for emergency vs routine system events  
 
 ---
 
 ## Part A: Teachable Machine Training
 
 ### Training Setup
-
-- Task: Emergency vs Routine Security Event Classification
+- Task: Emergency vs Routine security event classification
 - Training images per class: 25
-- Test images per class: 5
-- Total training time: ~45 seconds
+- Test images per class: 5 (10 total test images)
+- Tool: Google Teachable Machine
 
 ---
 
-### Confusion Matrix
+## Test Results
+
+| # | Actual Class | Predicted Class | Confidence | Correct? |
+|---|-------------|----------------|------------|----------|
+| 1 | Routine | Routine | 100% | Yes |
+| 2 | Routine | Routine | 100% | Yes |
+| 3 | Routine | Routine | 100% | Yes |
+| 4 | Routine | Routine | 100% | Yes |
+| 5 | Routine | Routine | 100% | Yes |
+| 6 | Emergency | Emergency | 100% | Yes |
+| 7 | Emergency | Emergency | 54% | Yes |
+| 8 | Emergency | Routine | 46% | No |
+| 9 | Emergency | Emergency | 100% | Yes |
+| 10 | Emergency | Emergency | 82% | Yes |
+
+---
+
+## Confusion Matrix
 
 | | Predicted Emergency | Predicted Routine |
 |---|---|---|
@@ -26,60 +43,72 @@
 
 ---
 
-### Calculated Metrics
+## Metrics
 
-- Accuracy: 90%
-- Precision: 100%
-- Recall: 80%
-- F1 Score: 88.9%
+- Accuracy: **90%**
+- Precision (Emergency): **100%**
+- Recall (Emergency): **80%**
+- F1 Score: **88.9%**
 
 ---
 
-### Interpretation
+## Interpretation
 
-The model demonstrated strong classification performance.
+The model performs very well on routine cases, correctly identifying all normal events. However, it misses some emergency cases when confidence is low, indicating that recall is weaker than precision. This means the model is conservative and prefers to avoid false alarms, but it can miss real threats.
 
-Precision was perfect, meaning all predicted emergencies were correctly identified.
-
-Recall was lower because one actual emergency was missed.
-
-Since missed emergencies pose greater operational risk than false alarms, improving recall would be a priority.
-
-More diverse emergency training images would likely improve performance.
+Improving performance would require more diverse emergency training data and additional edge-case examples.
 
 ---
 
 ## Part B: Generic vs Fine-Tuned Model Comparison
 
 ### Models Tested
+- Generic: distilbert-base-uncased-sst-2 (sentiment model)
+- Fine-Tuned A: j-hartmann/emotion-english-distilroberta-base
+- Fine-Tuned B: cardiffnlp/twitter-roberta-base-sentiment-latest
 
-1. Generic: distilbert-base-uncased-finetuned-sst-2-english
-2. Fine-Tuned A: cardiffnlp/twitter-roberta-base-sentiment-latest
-3. Fine-Tuned B: j-hartmann/emotion-english-distilroberta-base
+---
 
-### Analysis
+## Results Summary
 
-**Generic model strengths:**  
-Reliable basic sentiment classification.
+Across test inputs, the fine-tuned models provided more meaningful classifications than the generic sentiment model. The generic model sometimes labeled security alerts as “positive” or “neutral,” showing lack of domain awareness.
 
-**Generic model weaknesses:**  
-Unable to distinguish operational urgency from ordinary negative language.
+The emotion-based model performed better at detecting fear and concern signals in emergency-related text.
 
-**Fine-tuned model advantage:**  
-The emotion-based classifier detected fear and concern signals strongly associated with emergency scenarios.
+---
 
-**Biggest surprise:**  
-The emotion classifier consistently identified emergency events with high confidence while maintaining neutral classifications for routine operational updates.
+## Analysis
 
-### Recommended Model for My Capstone Component
+**Generic model strengths:**
+- Fast and stable
+- Works well on clear positive/negative language
 
-**Primary Model:** j-hartmann/emotion-english-distilroberta-base
+**Generic model weaknesses:**
+- Misclassifies security alerts as positive/neutral
+- No domain understanding of emergencies
 
-**Why:**  
-Its outputs align more closely with emergency escalation logic than sentiment-based models.
+**Fine-tuned model advantage:**
+- Better detection of emotional tone (fear, anger, threat)
+- More aligned with real-world security interpretation
 
-**Confidence Threshold:** 0.85
+**Biggest surprise:**
+A fire suppression alarm event was classified as “positive,” showing that sentiment models do not understand operational risk.
 
-**Priority Metric:** Recall
+---
 
-Missing emergencies presents greater operational risk than false alerts.
+## Recommended Model
+
+**Component:** Emergency detection system  
+**Best model:** Fine-tuned emotion model (j-hartmann/emotion-english-distilroberta-base)
+
+**Reason:** It better captures threat-related emotional signals such as fear and urgency.
+
+**Priority metric:** Recall — missing emergencies is more costly than false alarms.
+
+---
+
+## Limitations & Next Steps
+
+- Small dataset (10 test samples) limits reliability
+- More training data would improve recall
+- Future improvement: train a domain-specific classifier for security alerts
