@@ -1,7 +1,6 @@
 # Model Comparison Report — Week 4
 
 **Name:** Hala Elhanafy
-**Date:** May 18, 2026
 **Capstone Project:** Emergency Response Protocol System
 **My Component:** Component 1 — Emergency Protocol Knowledge Base (Airtable)
 
